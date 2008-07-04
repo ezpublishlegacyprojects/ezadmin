@@ -1,14 +1,6 @@
 <?php
-/**
- * File frame.php
- *
- * @package ezadmin
- * @version //autogentag//
- * @copyright Copyright (C) 2007 xrow. All rights reserved.
- * @license http://www.gnu.org/licenses/gpl.txt GPL License
- */
 $Module =& $Params['Module'];
-$http =& eZHTTPTool::instance();
+$http = eZHTTPTool::instance();
 
 if ( $Module->isCurrentAction( 'Exit' ) )
 {
@@ -16,7 +8,7 @@ if ( $Module->isCurrentAction( 'Exit' ) )
 }
 
 include_once( 'kernel/common/template.php' );
-$tpl =& templateInit();
+$tpl = templateInit();
 
 $tpl->setVariable( 'modulename', $Params['modulename'] );
 $tpl->setVariable( 'view', $Params['view'] );

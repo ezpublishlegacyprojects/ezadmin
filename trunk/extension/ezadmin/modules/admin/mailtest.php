@@ -1,21 +1,13 @@
 <?php
-/**
- * File mailtest.php
- *
- * @package ezadmin
- * @version //autogentag//
- * @copyright Copyright (C) 2007 xrow. All rights reserved.
- * @license http://www.gnu.org/licenses/gpl.txt GPL License
- */
 include_once( "kernel/common/template.php" );
 include_once( 'lib/ezutils/classes/ezhttptool.php' );
 
 $Module =& $Params['Module'];
 $sys  = eZSys::instance();
-$tpl =& templateInit();
-$ini =& eZINI::instance();
+$tpl = templateInit();
+$ini = eZINI::instance();
 
-$http =& eZHTTPTool::instance();
+$http = eZHTTPTool::instance();
 
 $output = "";
 if ( $Module->isCurrentAction( 'Cancel' ) )
@@ -65,7 +57,7 @@ else
 
 $Result = array();
 $Result['left_menu'] = "design:parts/ezadmin/menu.tpl";
-$Result['content'] =& $tpl->fetch( "design:ezadmin/mailtest.tpl" );
+$Result['content'] = $tpl->fetch( "design:ezadmin/mailtest.tpl" );
 $Result['path'] = array( array( 'url' => false,
                                 'text' => ezi18n( 'extension/admin', 'SOAP test webclient' ) ) );
 

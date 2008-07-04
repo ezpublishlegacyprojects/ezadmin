@@ -1,21 +1,13 @@
 <?php
-/**
- * File client.php
- *
- * @package ezadmin
- * @version //autogentag//
- * @copyright Copyright (C) 2007 xrow. All rights reserved.
- * @license http://www.gnu.org/licenses/gpl.txt GPL License
- */
 include_once( "kernel/common/template.php" );
 include_once( 'lib/ezutils/classes/ezhttptool.php' );
 
 $Module =& $Params['Module'];
 $sys  = eZSys::instance();
-$tpl =& templateInit();
-$ini =& eZINI::instance();
+$tpl = templateInit();
+$ini = eZINI::instance();
 
-$http =& eZHTTPTool::instance();
+$http = eZHTTPTool::instance();
 
 $output = "";
 if ( $Module->isCurrentAction( 'Cancel' ) )
@@ -58,15 +50,21 @@ $request = new eZSOAPRequest( $parameters["function"], $parameters["server"] );
 
 // send the request to the server and fetch the response
 $response = $client->send( $request );
-	
-	// check if the server returned a fault, if not print out the result
-	if ( $response->isFault() )
+	if( is_object( $response ) )
 	{
-	    $output =  "SOAP fault: " . $response->faultCode(). " - " . $response->faultString()."\n";
+	   // check if the server returned a fault, if not print out the result
+	   if ( $response->isFault() )
+	   {
+	       $output =  "SOAP fault: " . $response->faultCode(). " - " . $response->faultString()."\n";
+	   }
+	   else
+	   {
+		  $output = print_r( $response->value(), true);
+	   }
 	}
 	else
 	{
-		$output = print_r( $response->value(), true);
+		$output =  "Error: Request returned no response\n";
 	}
 }
 
@@ -98,7 +96,7 @@ else
 
 $Result = array();
 $Result['left_menu'] = "design:parts/ezadmin/menu.tpl";
-$Result['content'] =& $tpl->fetch( "design:ezadmin/client.tpl" );
+$Result['content'] = $tpl->fetch( "design:ezadmin/client.tpl" );
 $Result['path'] = array( array( 'url' => false,
                                 'text' => ezi18n( 'extension/admin', 'SOAP test webclient' ) ) );
 

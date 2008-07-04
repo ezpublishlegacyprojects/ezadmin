@@ -1,16 +1,9 @@
 <?php
-/**
- * File changeuser.php
- *
- * @package ezadmin
- * @version //autogentag//
- * @copyright Copyright (C) 2007 xrow. All rights reserved.
- * @license http://www.gnu.org/licenses/gpl.txt GPL License
- */
+
 ext_class("ezadmin","ezuseraddition");
 
 $module =& $Params["Module"];
-$http =& eZHTTPTool::instance();
+$http = eZHTTPTool::instance();
 
 $ObjectID = &$Params['ObjectID'];
 if ( !$ObjectID )
@@ -18,7 +11,7 @@ if ( !$ObjectID )
     eZDebug::writeError('Missing parameter Object ID.',"eZAdmin change User");
     return $Module->handleError( EZ_ERROR_KERNEL_ACCESS_DENIED, 'kernel' );
 }
-$user = &eZUser::fetch($ObjectID);
+$user = eZUser::fetch($ObjectID);
 if ( !$user )
 {
     eZDebug::writeError('No such user or missing right "content read"',"eZAdmin change User");
@@ -34,7 +27,7 @@ if ( !$usercontentobject->attribute( 'can_edit' ) )
 eZUserAddition::loginDifferentUser($ObjectID);
 
 $userRedirectURI = $Module->actionParameter( 'UserRedirectURI' );
-$ini = &eZINI::instance();
+$ini = eZINI::instance();
 if ( trim( $userRedirectURI ) == "" )
 {
     // Only use redirection if requireuser login is disabled

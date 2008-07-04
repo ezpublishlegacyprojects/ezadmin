@@ -1,28 +1,19 @@
 <?php
-/**
- * File sqlquery.php
- *
- * @package ezadmin
- * @version //autogentag//
- * @copyright Copyright (C) 2007 xrow. All rights reserved.
- * @license http://www.gnu.org/licenses/gpl.txt GPL License
- */
-
 $Module =& $Params['Module'];
-$http =& eZHTTPTool::instance();
+$http = eZHTTPTool::instance();
 
 if ( $http->hasPostVariable('Skip') ){
     $Module->redirectToView( 'menu' );
 }
 include_once( 'kernel/common/template.php' );
-$tpl =& templateInit();
+$tpl = templateInit();
 
 if ( $http->hasPostVariable('Execute') )
 {
     if( $http->hasPostVariable('sql') and $http->postVariable('sql') )
     {
         $tpl->setVariable( 'executed', 1 );
-        $db =& eZDB::instance();
+        $db = eZDB::instance();
         $sql = trim( $http->postVariable('sql') );
         $queries = array();
         PMA_splitSqlFile( $queries, $sql, 0 );
@@ -36,7 +27,7 @@ if ( $http->hasPostVariable('Execute') )
         {
             foreach( $queries as $query )
             {
-                $result =& $db->query( $query );
+                $result = $db->query( $query );
                 if ( $result == false )
                     break;
             }

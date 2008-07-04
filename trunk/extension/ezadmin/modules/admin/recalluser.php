@@ -1,16 +1,9 @@
 <?php
-/**
- * File recalluser.php
- *
- * @package ezadmin
- * @version //autogentag//
- * @copyright Copyright (C) 2007 xrow. All rights reserved.
- * @license http://www.gnu.org/licenses/gpl.txt GPL License
- */
+
 ext_class("ezadmin","ezuseraddition");
 
 $Module =& $Params["Module"];
-$http =& eZHTTPTool::instance();
+$http = eZHTTPTool::instance();
 
 if ( $http->hasSessionVariable( 'eZUserAdditionOldID' ) )
 {
@@ -22,7 +15,7 @@ else
     return $Module->handleError( EZ_ERROR_KERNEL_ACCESS_DENIED, 'kernel' );
 }
 $userRedirectURI = $Module->actionParameter( 'UserRedirectURI' );
-$ini = &eZINI::instance();
+$ini = eZINI::instance();
 if ( trim( $userRedirectURI ) == "" )
 {
     // Only use redirection if requireuser login is disabled

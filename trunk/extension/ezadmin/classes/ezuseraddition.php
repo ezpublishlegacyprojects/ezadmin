@@ -13,17 +13,17 @@ class eZUserAddition
 	{
 
 	}
-	function loginDifferentUser($ObjectID)
+	static function loginDifferentUser($ObjectID)
 	{
-		$http =& eZHTTPTool::instance();
-		$currentuser =& eZUser::currentUser();
-		$user =& eZUser::fetch($ObjectID);
+		$http = eZHTTPTool::instance();
+		$currentuser = eZUser::currentUser();
+		$user = eZUser::fetch($ObjectID);
 		if ($user==null)
 			return false;
 		
 		//bye old user 
 		$currentID = $http->sessionVariable( 'eZUserLoggedInID' );
-		$http  =& eZHTTPTool::instance();
+		$http  = eZHTTPTool::instance();
 		$currentuser->logoutCurrent();
 
 		//welcome new user
@@ -31,17 +31,17 @@ class eZUserAddition
 		$http->setSessionVariable( 'eZUserAdditionOldID', $currentID );
 		return true;
 	}
-	function recallUser()
+	static function recallUser()
 	{
-		$http =& eZHTTPTool::instance();
+		$http = eZHTTPTool::instance();
 		if ( $http->hasSessionVariable( 'eZUserAdditionOldID' ) )
 		{
 			$ObjectID = $http->sessionVariable( 'eZUserAdditionOldID' );
 			$http->removeSessionVariable( 'eZUserAdditionOldID' );
-			$user = &eZUser::currentUser();
+			$user = eZUser::currentUser();
 			$user->logoutCurrent();
 		
-			$user = &eZUser::fetch($ObjectID);
+			$user = eZUser::fetch($ObjectID);
 			$user->loginCurrent();
 			return true;
 		}
@@ -58,9 +58,9 @@ class eZUserAddition
 		}
 		return false;
 	}
-    function recallUserID()
+    static function recallUserID()
 	{
-		$http =& eZHTTPTool::instance();
+		$http = eZHTTPTool::instance();
 		if ( $http->hasSessionVariable( 'eZUserAdditionOldID' ) )
 		{
 			return $http->sessionVariable( 'eZUserAdditionOldID' );
