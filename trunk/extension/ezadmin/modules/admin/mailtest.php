@@ -32,7 +32,7 @@ if ( $http->hasPostVariable( 'Run' ) )
             $mail->setSender( $ini->variable( 'MailSettings', 'AdminEmail' ) );
 
         $mail->setReceiver( $http->postVariable( 'To' ) );
-        $mail->setBody( $subject );
+        $mail->setBody( $subject."\n\nNew line test.\nMessage End." );
         $mail->setSubject( $subject );
 
         $response = eZMailTransport::send( $mail );
