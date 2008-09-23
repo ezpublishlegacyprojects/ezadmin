@@ -13,7 +13,7 @@ include_once( 'kernel/common/template.php' );
 
 $Module->setTitle( "Website down for maintance" );
 
-$tpl =& templateInit();
+$tpl = templateInit();
 
 if ( $Params['date'] )
 {

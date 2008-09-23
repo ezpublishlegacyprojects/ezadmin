@@ -8,8 +8,8 @@
  * @license http://www.gnu.org/licenses/gpl.txt GPL License
  */
 include_once( 'kernel/common/template.php' );
-$tpl =& templateInit();
-$http =& eZHTTPTool::instance();
+$tpl = templateInit();
+$http = eZHTTPTool::instance();
 // Start module definition
 $module =& $Params["Module"];
 if( !$http->hasPostVariable('BrowseActionName') == 'BrowseNewOwner' )

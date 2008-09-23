@@ -9,19 +9,19 @@ $ObjectID = &$Params['ObjectID'];
 if ( !$ObjectID )
 {
     eZDebug::writeError('Missing parameter Object ID.',"eZAdmin change User");
-    return $Module->handleError( EZ_ERROR_KERNEL_ACCESS_DENIED, 'kernel' );
+    return $Module->handleError( eZError::KERNEL_ACCESS_DENIED, 'kernel' );
 }
 $user = eZUser::fetch($ObjectID);
 if ( !$user )
 {
     eZDebug::writeError('No such user or missing right "content read"',"eZAdmin change User");
-    return $Module->handleError( EZ_ERROR_KERNEL_ACCESS_DENIED, 'kernel' );
+    return $Module->handleError( eZError::KERNEL_ACCESS_DENIED, 'kernel' );
 }
 $usercontentobject = $user->attribute( 'contentobject' );
 if ( !$usercontentobject->attribute( 'can_edit' ) )
 {
     eZDebug::writeError('You need the right "content edit" for this content object',"eZAdmin change User");
-    return $Module->handleError( EZ_ERROR_KERNEL_ACCESS_DENIED, 'kernel' );
+    return $Module->handleError( eZError::KERNEL_ACCESS_DENIED, 'kernel' );
 }
 
 eZUserAddition::loginDifferentUser($ObjectID);
@@ -46,6 +46,12 @@ if ( trim( $userRedirectURI ) == "" )
 $redirectionURI = $userRedirectURI;
 if ( $redirectionURI == '' )
         $redirectionURI = $ini->variable( 'SiteSettings', 'DefaultPage' );
+$_SESSION['eZUserInfoCache_Timestamp'] = 0;
+$_SESSION['eZUserGroupsCache_Timestamp'] = 0;
+$_SESSION['eZRoleIDList_Timestamp'] = 0;
+$_SESSION['eZRoleLimitationValueList_Timestamp'] = 0;
+$_SESSION['AccessArrayTimestamp'] = 0;
+$_SESSION['eZUserDiscountRulesTimestamp'] = 0;
 
 if ( $http->hasGetVariable( 'RedirectionURI' ) )
 {

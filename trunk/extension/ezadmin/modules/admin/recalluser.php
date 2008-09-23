@@ -12,7 +12,7 @@ if ( $http->hasSessionVariable( 'eZUserAdditionOldID' ) )
 else
 {
     eZDebug::writeError('No informer session found',"eZAdmin change User");
-    return $Module->handleError( EZ_ERROR_KERNEL_ACCESS_DENIED, 'kernel' );
+    return $Module->handleError( eZError::KERNEL_ACCESS_DENIED, 'kernel' );
 }
 $userRedirectURI = $Module->actionParameter( 'UserRedirectURI' );
 $ini = eZINI::instance();
@@ -34,7 +34,12 @@ if ( trim( $userRedirectURI ) == "" )
 $redirectionURI = $userRedirectURI;
 if ( $redirectionURI == '' )
         $redirectionURI = $ini->variable( 'SiteSettings', 'DefaultPage' );
-
+$_SESSION['eZUserInfoCache_Timestamp'] = 0;
+$_SESSION['eZUserGroupsCache_Timestamp'] = 0;
+$_SESSION['eZRoleIDList_Timestamp'] = 0;
+$_SESSION['eZRoleLimitationValueList_Timestamp'] = 0;
+$_SESSION['AccessArrayTimestamp'] = 0;
+$_SESSION['eZUserDiscountRulesTimestamp'] = 0;
 if ( $http->hasGetVariable( 'RedirectionURI' ) )
 {
     $Module->redirectTo( $http->getVariable('RedirectionURI') );
