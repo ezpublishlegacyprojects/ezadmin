@@ -15,7 +15,7 @@
    {if function_exists('apc_add')}
     <li><div><a href={"/admin/frame/admin/apc/"|ezurl}>APC Control Interface</a></div></li>
    {/if}
-   {if function_exists('eaccelerator_get')
+   {if function_exists('eaccelerator_get')}
     <li><div><a href={"/admin/frame/admin/eaccelerator/"|ezurl}>eAccelerator Control Interface</a></div></li>
    {/if}
 {def $access=fetch( 'user', 'has_access_to',
