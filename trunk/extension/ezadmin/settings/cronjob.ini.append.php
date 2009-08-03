@@ -13,4 +13,7 @@ Scripts[]=ezbackup.php
 [CronjobPart-session_cleanup]
 Scripts[]
 Scripts[]=session_cleanup.php
+
+[CronjobPart-directorycleanup]
+Scripts[]=directory_cleanup.php
 */ ?>
