@@ -30,7 +30,7 @@
 
 <table class="list">
   <tr class="bglight">
-    <th scope="row">{'Reveiver address'|i18n( 'extension/admin' )}</th>
+    <th scope="row">{'Receiver address'|i18n( 'extension/admin' )}</th>
     <td>
         <input name="To" type="text" value="{$To}" />
     </td>
