@@ -2,6 +2,7 @@
 [SystemCheckSettings]
 PHPTest=enabled
 
+# enable or disable individual checks
 [PHPTestSettings]
 PHPTests[]=phpversion
 PHPTests[]=variables_order
