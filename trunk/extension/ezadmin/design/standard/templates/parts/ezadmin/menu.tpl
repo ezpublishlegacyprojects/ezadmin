@@ -25,8 +25,9 @@
 {if $access}
     <li><div><a href={"/svn/client"|ezurl}>SVN Client</a></div></li>
 {/if}
-    <li><div><a href={"/admin/client"|ezurl}>SOAP test Client</a></div></li>
-    <li><div><a href={"/admin/mailtest"|ezurl}>Mail test</a></div></li>
+    <li><div><a href={"/admin/client"|ezurl}>SOAP Test Client</a></div></li>
+    <li><div><a href={"/admin/mailtest"|ezurl}>Mail Test</a></div></li>
+	<li><div><a href={"/admin/systemcheck"|ezurl}>System Check</a></div></li>
   </ul>
 
 {* DESIGN: Content END *}</div></div></div></div></div></div>

@@ -92,6 +92,15 @@ $ViewList['mailtest'] = array(
 	'post_action_parameters' => array( 'Cancel' => array(  ) ),
 	"params" => array( ),
 	"unordered_params" => array(  ) );
+$ViewList['systemcheck'] = array(
+	'script' => 'systemcheck.php',
+    'ui_context' => 'systemcheck',
+	'default_navigation_part' => 'ezadmin',
+	'functions' => array( 'systemcheck' ),
+	'single_post_actions' => array( 'Cancel' => 'Cancel' ),
+	'post_action_parameters' => array( 'Cancel' => array(  ) ),
+	'params' => array( ),
+	'unordered_params' => array(  ) );
 
 $FunctionList['setowner'] = array( );
 $FunctionList['systemtesting'] = array( );
@@ -102,4 +111,5 @@ $FunctionList['menu'] = array( );
 $FunctionList['sqlquery'] = array( );
 $FunctionList['phpmyadmin'] = array( );
 $FunctionList['accelerator'] = array( );
+$FunctionList['systemcheck'] = array( );
 ?>
