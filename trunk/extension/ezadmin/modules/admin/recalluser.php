@@ -1,7 +1,5 @@
 <?php
 
-ext_class("ezadmin","ezuseraddition");
-
 $Module =& $Params["Module"];
 $http = eZHTTPTool::instance();
 

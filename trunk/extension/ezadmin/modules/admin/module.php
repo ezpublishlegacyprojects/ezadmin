@@ -7,11 +7,7 @@
  * @copyright Copyright (C) 2007 xrow. All rights reserved.
  * @license http://www.gnu.org/licenses/gpl.txt GPL License
  */
-$Module = array( "name" => "Admin",
-                 "variable_params" => true,
-                 "function" => array(
-                     "script" => "changeuser.php",
-                     "params" => array( ) ) );
+$Module = array( "name" => "Admin" );
 
 $ViewList = array();
 $ViewList["setowner"] = array(
@@ -25,10 +21,12 @@ $ViewList["changeuser"] = array(
     "script" => "changeuser.php",
     'params' => array( 'ObjectID' ) );
 $ViewList["changeuserview"] = array(
+	'functions' => array( 'userchange' ),
     'default_navigation_part' => 'ezadmin',
     "script" => "changeuserview.php",
     'params' => array( ) );
 $ViewList["recalluser"] = array(
+	'functions' => array( 'userchange' ),
     'default_navigation_part' => 'ezadmin',
     "script" => "recalluser.php",
     'params' => array( ) );

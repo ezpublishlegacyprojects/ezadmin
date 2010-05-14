@@ -1,8 +1,6 @@
 <?php
 
-ext_class("ezadmin","ezuseraddition");
-
-$module =& $Params["Module"];
+$Module =& $Params["Module"];
 $http = eZHTTPTool::instance();
 
 $ObjectID = &$Params['ObjectID'];
@@ -55,14 +53,14 @@ $_SESSION['eZUserDiscountRulesTimestamp'] = 0;
 
 if ( $http->hasGetVariable( 'RedirectionURI' ) )
 {
-    $module->redirectTo( $http->getVariable('RedirectionURI') );
+    $Module->redirectTo( $http->getVariable('RedirectionURI') );
 }
 else if($redirectionURI)
 {
-    $module->redirectTo( $redirectionURI );
+    $Module->redirectTo( $redirectionURI );
 }
 else
 {
-    $module->redirectTo( "/" );
+    $Module->redirectTo( "/" );
 }
 ?>
