@@ -10,7 +10,7 @@
   <ul>
     <li><div><a href={"/admin/sqlquery"|ezurl}>SQL Manager</a></div></li>
     {*<li><div><a href={"/admin/backup"|ezurl}>Backup</a></div></li>*}
-    <li><div><a href={"/admin/frame/admin/phpinfo"|ezurl}>PHP Information</a></div></li>
+    {*<li><div><a href={"/admin/frame/admin/phpinfo"|ezurl}>PHP Information</a></div></li>*}
     <li><div><a href={"/admin/changeuserview"|ezurl}>User Change</a></div></li>
    {if function_exists('apc_add')}
     <li><div><a href={"/admin/frame/admin/apc/"|ezurl}>APC Control Interface</a></div></li>
