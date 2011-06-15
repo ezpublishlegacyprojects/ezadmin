@@ -1,6 +1,6 @@
 /*
     eZAdmin for eZ publish
-    Copyright (C) 2004  xrow GbR, Hannover Germany
+    Copyright (C) 2004  xrow GmbH, Hannover Germany
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -14,7 +14,8 @@
 */
 
 Developed by
-Björn Dieding   ( bjoern@xrow.de )
+BjÃ¶rn Dieding   ( bjoern@xrow.de )
+Kristina Ebel (kristina@xrow.de)
 
 PubSVN:
 http://pubsvn.ez.no/viewcvs/community/trunk/extension/ezadmin/

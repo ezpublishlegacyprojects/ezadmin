@@ -8,7 +8,7 @@ $tpl = templateInit();
 
 $db = eZDB::instance();
 
-if ( $http->postVariable( 'SiteAccess') and $http->postVariable( 'ObjectID') )
+if ( $http->hasPostVariable( 'SiteAccess') and $http->hasPostVariable( 'ObjectID') )
 {
     $path = eZSys::indexDir( false ) . '/' . $http->postVariable( 'SiteAccess') . '/admin/changeuser/'. $http->postVariable( 'ObjectID');
     eZHTTPTool::redirect( $path );
@@ -22,7 +22,7 @@ else
 if ( $Params['Offset'] )
     $Offset = (int) $Params['Offset'];
 
-if ( $http->postVariable( 'search_text') )
+if ( $http->hasPostVariable( 'search_text') )
 {
     $search_text = $http->postVariable( 'search_text');
 }
@@ -64,8 +64,8 @@ $tpl->setVariable( 'current_siteaccess', $GLOBALS['eZCurrentAccess']['name'] );
 $tpl->setVariable( 'search_text', $search_text );
 
 $Result = array();
-$Result['left_menu'] = "design:parts/ezadmin/menu.tpl";
-$Result['content'] = $tpl->fetch( "design:ezadmin/changeuserview.tpl" );
+$Result['left_menu'] = 'design:parts/ezadmin/menu.tpl';
+$Result['content'] = $tpl->fetch( 'design:ezadmin/changeuserview.tpl' );
 $Result['path'] = array( array( 'url' => false,
-                        'text' => 'Change User' ) );
+                                'text' => 'Change User' ) );
 ?>

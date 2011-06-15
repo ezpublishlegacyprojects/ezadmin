@@ -7,107 +7,113 @@
  * @copyright Copyright (C) 2007 xrow. All rights reserved.
  * @license http://www.gnu.org/licenses/gpl.txt GPL License
  */
-$Module = array( "name" => "Admin" );
+$Module = array( 'name' => 'Admin' );
 
 $ViewList = array();
-$ViewList["setowner"] = array(
+$ViewList['setowner'] = array(
     'functions' => array( 'setowner' ),
     'default_navigation_part' => 'ezadmin',
-    "script" => "setowner.php",
+    'script' => 'setowner.php',
     'params' => array( 'ObjectID' ) );
-$ViewList["changeuser"] = array(
-    'functions' => array( 'userchange' ),
+$ViewList['changeuser'] = array(
+    'functions' => array( 'changeuser' ),
     'default_navigation_part' => 'ezadmin',
-    "script" => "changeuser.php",
+    'script' => 'changeuser.php',
     'params' => array( 'ObjectID' ) );
-$ViewList["changeuserview"] = array(
-	'functions' => array( 'userchange' ),
+$ViewList['changeuserview'] = array(
+	'functions' => array( 'changeuserview' ),
     'default_navigation_part' => 'ezadmin',
-    "script" => "changeuserview.php",
+    'script' => 'changeuserview.php',
     'params' => array( ) );
-$ViewList["recalluser"] = array(
-	'functions' => array( 'userchange' ),
+$ViewList['recalluser'] = array(
+	'functions' => array( 'recalluser' ),
     'default_navigation_part' => 'ezadmin',
-    "script" => "recalluser.php",
+    'script' => 'recalluser.php',
     'params' => array( ) );
-$ViewList["backup"] = array(
-    'default_navigation_part' => 'ezadmin',
+$ViewList['backup'] = array(
+    'default_navigation_part' => 'backup',
     'functions' => array( 'backup' ),
-    "script" => "backup.php",
+    'script' => 'backup.php',
     'params' => array(  ) );
-$ViewList["phpinfo"] = array(
-    'default_navigation_part' => 'ezadmin',
+$ViewList['phpinfo'] = array(
     'functions' => array( 'phpinfo' ),
-    "script" => "phpinfo.php",
-    'params' => array(  ) );
-$ViewList["menu"] = array(
     'default_navigation_part' => 'ezadmin',
-    "script" => "menu.php",
-    'params' => array(  ) );
-$ViewList["sqlquery"] = array(
+    'script' => 'phpinfo.php',
+    'params' => array( 'phpinfo' ) );
+$ViewList['menu'] = array(
+	'script' => 'menu.php',
+    'default_navigation_part' => 'ezadmin',
+    'functions' => array( 'menu' ) );
+$ViewList['sqlquery'] = array(
     'functions' => array( 'sqlquery' ),
     'default_navigation_part' => 'ezadmin',
-    "script" => "sqlquery.php",
+    'script' => 'sqlquery.php',
     'params' => array( 'sql' ) );
-$ViewList["phpmyadmin"] = array(
+$ViewList['phpmyadmin'] = array(
     'functions' => array( 'phpmyadmin' ),
     'default_navigation_part' => 'ezadmin',
-    "script" => "phpmyadmin.php",
+    'script' => 'phpmyadmin.php',
     'params' => array( ) );
-$ViewList["frame"] = array(
-    "script" => "frame.php",
+$ViewList['frame'] = array(
+    'script' => 'frame.php',
     'default_navigation_part' => 'ezadmin',
     'ui_context' => 'edit',
     'ui_component' => 'content',
     'single_post_actions' => array( 'Exit' => 'Exit' ),
-    'params' => array( "modulename", "view" ) );
-$ViewList["apc"] = array(
+    'params' => array( 'modulename', 'view' ) );
+$ViewList['apc'] = array(
     'default_navigation_part' => 'ezadmin',
-    'functions' => array( 'accelerator' ),
+    'functions' => array( 'apc' ),
     'script' => 'apc.php',
     'params' => array( ) );
-$ViewList["eaccelerator"] = array(
+$ViewList['eaccelerator'] = array(
     'default_navigation_part' => 'ezadmin',
-    'functions' => array( 'accelerator' ),
+    'functions' => array( 'eaccelerator' ),
     'script' => 'eaccelerator.php',
     'params' => array( ) );
-$ViewList["maintance"] = array(
-    "script" => "maintance.php",
+$ViewList['maintance'] = array(
+    'script' => 'maintance.php',
     'params' => array( 'date', 'time' ) );
 $ViewList['client'] = array(
 	'script' => 'client.php',
-	'default_navigation_part' => 'ezadmin',
-	'functions' => array( 'systemtesting' ),
 	'single_post_actions' => array( 'Cancel' => 'Cancel' ),
-	'post_action_parameters' => array( 'Cancel' => array(  ) ),
-	"params" => array( ),
-	"unordered_params" => array(  ) );
+    'default_navigation_part' => 'ezadmin',
+    'functions' => array( 'client' ) );
 $ViewList['mailtest'] = array(
-	'script' => 'mailtest.php',
-	'default_navigation_part' => 'ezadmin',
-	'functions' => array( 'systemtesting' ),
-	'single_post_actions' => array( 'Cancel' => 'Cancel' ),
-	'post_action_parameters' => array( 'Cancel' => array(  ) ),
-	"params" => array( ),
-	"unordered_params" => array(  ) );
+    'script' => 'mailtest.php',
+    'default_navigation_part' => 'ezadmin',
+    'functions' => array( 'mailtest' ),
+    'single_post_actions' => array( 'Cancel' => 'Cancel' ) );
 $ViewList['systemcheck'] = array(
-	'script' => 'systemcheck.php',
+    'script' => 'systemcheck.php',
     'ui_context' => 'systemcheck',
-	'default_navigation_part' => 'ezadmin',
-	'functions' => array( 'systemcheck' ),
+    'default_navigation_part' => 'ezadmin',
+    'functions' => array( 'systemcheck' ),
+    'single_post_actions' => array( 'Cancel' => 'Cancel' ),
+    'post_action_parameters' => array( 'Cancel' => array(  ) ),
+    'params' => array( ),
+    'unordered_params' => array(  ) );
+$ViewList['solrcheck'] = array(
+    'script' => 'solrcheck.php',
 	'single_post_actions' => array( 'Cancel' => 'Cancel' ),
-	'post_action_parameters' => array( 'Cancel' => array(  ) ),
-	'params' => array( ),
-	'unordered_params' => array(  ) );
+    'default_navigation_part' => 'ezadmin',
+    'functions' => array( 'solrcheck' ) );
 
 $FunctionList['setowner'] = array( );
-$FunctionList['systemtesting'] = array( );
-$FunctionList['userchange'] = array( );
+$FunctionList['changeuser'] = array( );
+$FunctionList['changeuserview'] = array( );
+$FunctionList['recalluser'] = array( );
 $FunctionList['backup'] = array( );
-$FunctionList['phpinfo'] = array( );
 $FunctionList['menu'] = array( );
+$FunctionList['phpinfo'] = array( );
 $FunctionList['sqlquery'] = array( );
 $FunctionList['phpmyadmin'] = array( );
+$FunctionList['apc'] = array( );
 $FunctionList['accelerator'] = array( );
+$FunctionList['maintance'] = array( );
+$FunctionList['client'] = array( );
+$FunctionList['mailtest'] = array( );
+$FunctionList['systemtesting'] = array( );
 $FunctionList['systemcheck'] = array( );
+$FunctionList['solrcheck'] = array( );
 ?>
