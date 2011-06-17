@@ -10,6 +10,7 @@
 
 include_once ( 'autoload.php' );
 include_once ( 'kernel/common/template.php' );
+require_once( 'kernel/common/i18n.php' );
 
 $Module = $Params['Module'];
 $tpl = templateInit();
