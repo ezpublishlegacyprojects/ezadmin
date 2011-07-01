@@ -20,12 +20,20 @@
 
 <div class="context-toolbar">
 
-<div class="block">
+    <div class="block">
+        <div class="break"></div>
+        <p>{'Test webmail client'|i18n( 'extension/admin' )}</p>
+    </div>
+    
+    <div class="block">
+        <div>
+            <select name="transporttype">
+                <option value="ezcMail">ezcMail</option>
+                <option value="eZMail">eZMail</option>
+            </select>
+        </div>
+    </div>
 
-<div class="break"></div>
-
-  <p>{'Test webmail client'|i18n( 'extension/admin' )}</p>
-</div>
 </div>
 
 <table class="list">
