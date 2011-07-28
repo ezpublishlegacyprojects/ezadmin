@@ -35,6 +35,15 @@
     </div>
 
 </div>
+<div class="block">
+<div>
+    <select name="transporttype">
+        <option value="ezcMail">ezcMail</option>
+        <option value="eZMail">eZMail</option>
+    </select>
+</div>
+</div>
+</div>
 
 <table class="list">
   <tr class="bglight">
