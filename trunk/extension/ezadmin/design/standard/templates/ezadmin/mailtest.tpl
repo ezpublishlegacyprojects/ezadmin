@@ -25,15 +25,6 @@
         <p>{'Test webmail client'|i18n( 'extension/admin' )}</p>
     </div>
     
-    <div class="block">
-        <div>
-            <select name="transporttype">
-                <option value="ezcMail">ezcMail</option>
-                <option value="eZMail">eZMail</option>
-            </select>
-        </div>
-    </div>
-
 </div>
 <div class="block">
 <div>
@@ -41,7 +32,6 @@
         <option value="ezcMail">ezcMail</option>
         <option value="eZMail">eZMail</option>
     </select>
-</div>
 </div>
 </div>
 
