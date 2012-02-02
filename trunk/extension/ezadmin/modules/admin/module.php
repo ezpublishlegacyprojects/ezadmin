@@ -98,6 +98,11 @@ $ViewList['solrcheck'] = array(
 	'single_post_actions' => array( 'Cancel' => 'Cancel' ),
     'default_navigation_part' => 'ezadmin',
     'functions' => array( 'solrcheck' ) );
+$ViewList['migration'] = array(
+    'script' => 'migration.php',
+	'single_post_actions' => array( 'Cancel' => 'Cancel' ),
+    'default_navigation_part' => 'ezadmin',
+    'functions' => array( 'migration' ) );
 
 $FunctionList['setowner'] = array( );
 $FunctionList['changeuser'] = array( );
@@ -106,6 +111,7 @@ $FunctionList['recalluser'] = array( );
 $FunctionList['backup'] = array( );
 $FunctionList['menu'] = array( );
 $FunctionList['phpinfo'] = array( );
+$FunctionList['migration'] = array( );
 $FunctionList['sqlquery'] = array( );
 $FunctionList['phpmyadmin'] = array( );
 $FunctionList['apc'] = array( );
@@ -116,4 +122,3 @@ $FunctionList['mailtest'] = array( );
 $FunctionList['systemtesting'] = array( );
 $FunctionList['systemcheck'] = array( );
 $FunctionList['solrcheck'] = array( );
-?>
