@@ -1,4 +1,4 @@
-/*
+﻿/*
     eZAdmin for eZ publish
     Copyright (C) 2004  xrow GmbH, Hannover Germany
 
@@ -17,8 +17,8 @@ Developed by
 Björn Dieding   ( bjoern@xrow.de )
 Kristina Ebel (kristina@xrow.de)
 
-PubSVN:
-http://pubsvn.ez.no/viewcvs/community/trunk/extension/ezadmin/
+SVN:
+http://projects.ez.no/ezadmin/subversion
 
 Thread in forum:
 http://ez.no/community/forum/developer/extension_ezadmin_pubsvn
