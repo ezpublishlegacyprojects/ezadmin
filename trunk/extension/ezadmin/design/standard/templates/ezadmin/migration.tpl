@@ -6,7 +6,7 @@
     </label>
     <label>Operation: 
         <select name="operation">
-            <option value="1" selected="selected">MoveTo</option>
+            <option value="1" selected="selected">MoveSubtree</option>
             <option value="2">MoveContents</option>
             <option value="3">SwapNode</option>
         </select>
@@ -16,8 +16,8 @@
         <span id="target_name"></span>
     </label>
     <p>
-        <input class="button" type="submit" name="Skip" value="Skip" />
         <input class="button" type="submit" name="Execute" value="Execute" />
+        <input class="button" type="submit" name="Skip" value="Skip" />
     </p>
 </form>
 {if is_set($error)}
