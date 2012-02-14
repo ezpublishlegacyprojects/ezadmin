@@ -5,4 +5,7 @@ AdditionalSiteDesignList[]=admin2
 AdditionalSiteDesignList[]=admin
 AdditionalSiteDesignList[]=standard
 
+[RegionalSettings]
+TranslationExtensions[]=ezadmin
+
 */ ?>
