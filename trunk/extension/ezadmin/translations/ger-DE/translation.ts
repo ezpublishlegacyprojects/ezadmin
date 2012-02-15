@@ -47,5 +47,21 @@
         <source>Execute</source>
         <translation>Ausführen</translation>
     </message>
+    <message>
+        <source>Please provide valid NodeID's for the choosen operation!</source>
+        <translation>Bitte geben Sie valide Knoten ID's für die Operation an!</translation>
+    </message>
+    <message>
+        <source>Moving Node %1 to %2</source>
+        <translation>Bewege Node %1 nach %2</translation>
+    </message>
+    <message>
+        <source>Moving Children from Node %1 to %2</source>
+        <translation>Bewege Kinder von %1 nach %2</translation>
+    </message>
+    <message>
+        <source>Swapping Node %1 with %2</source>
+        <translation>Tausche Node %1 mit %2</translation>
+    </message>
 </context>
 </TS>

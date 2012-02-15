@@ -17,7 +17,7 @@ if ( $http->hasPostVariable( 'Execute' ) )
     if ( empty( $source ) || empty( $target ) || ! eZContentObjectTreeNode::fetch( $target ) instanceof eZContentObjectTreeNode || ! eZContentObjectTreeNode::fetch( $source ) instanceof eZContentObjectTreeNode )
     {
         $error = true;
-        $operation = "An error has occured. Please provide valid NodeID's for your choosen Operation!";
+        $operation =  ezpI18n::tr( "admin/migration", "Please provide valid NodeID's for the choosen operation!");
     }
     else
     
@@ -35,7 +35,7 @@ if ( $http->hasPostVariable( 'Execute' ) )
                 {
                     $success = true;
                 }
-                $operation = "Moving Node " . $source . " to " . $target . "";
+                $operation = ezpI18n::tr( 'admin/migration', 'Moving Node %1 to %2', null, array( $source, $target ) );
                 break;
             case '2':
                 $params = array();
@@ -55,7 +55,7 @@ if ( $http->hasPostVariable( 'Execute' ) )
                         $success = true;
                     }
                 }
-                $operation = "Moving Children from Node " . $source . " to " . $target . "";
+                $operation = ezpI18n::tr( 'admin/migration', 'Moving Children from Node %1 to %2', null, array( $source, $target ) );
                 break;
             case '3':
                 $return = eZContentOperationCollection::swapNode( $source, $target, array( 
@@ -63,7 +63,7 @@ if ( $http->hasPostVariable( 'Execute' ) )
                     $target 
                 ) );
                 ( ! isset( $return['status'] ) ) ? $error = true : $success = true;
-                $operation = "Swapping Node " . $source . " with " . $target . "";
+                $operation = ezpI18n::tr( 'admin/migration', 'Swapping Node %1 with %2', null, array( $source, $target ) );
                 break;
         }
         $db->commit();
