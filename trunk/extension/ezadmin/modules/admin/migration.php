@@ -27,6 +27,7 @@ if ( $http->hasPostVariable( 'Execute' ) )
         switch ( $http->postVariable( 'operation' ) )
         {
             case '1':
+                $db->begin();
                 if ( eZContentObjectTreeNodeOperations::move( $source, $target ) !== true )
                 {
                     $error = true;
@@ -35,19 +36,25 @@ if ( $http->hasPostVariable( 'Execute' ) )
                 {
                     $success = true;
                 }
-                $operation = ezpI18n::tr( 'admin/migration', 'Moving Node %1 to %2', null, array( $source, $target ) );
+                $operation = ezpI18n::tr( 'admin/migration', 'Moving Node %1 to %2', null, array( 
+                    $source , 
+                    $target 
+                ) );
                 break;
             case '2':
-                $params = array();
+                $params = array( 
+                    'AsObject' => false 
+                );
                 $nodes = eZContentObjectTreeNode::subTreeByNodeID( $params, $source );
+                
                 if ( ! $nodes )
                 {
                     $error = true;
                 }
-                foreach ( $nodes as $node )
+                foreach ( $nodes as $key => $node )
                 {
-                	$db->begin();
-                    if ( eZContentObjectTreeNodeOperations::move( $node->attribute( 'node_id' ), $target ) !== true )
+                    $db->begin();
+                    if ( eZContentObjectTreeNodeOperations::move( $node['id'], $target ) !== true )
                     {
                         $error = true;
                     }
@@ -58,15 +65,23 @@ if ( $http->hasPostVariable( 'Execute' ) )
                     $db->commit();
                     eZContentObject::clearCache();
                 }
-                $operation = ezpI18n::tr( 'admin/migration', 'Moving Children from Node %1 to %2', null, array( $source, $target ) );
+                $operation = ezpI18n::tr( 'admin/migration', 'Moving Children from Node %1 to %2', null, array( 
+                    $source , 
+                    $target 
+                ) );
                 break;
             case '3':
+                $db->begin();
                 $return = eZContentOperationCollection::swapNode( $source, $target, array( 
                     $source , 
                     $target 
                 ) );
+                $db->commit();
                 ( ! isset( $return['status'] ) ) ? $error = true : $success = true;
-                $operation = ezpI18n::tr( 'admin/migration', 'Swapping Node %1 with %2', null, array( $source, $target ) );
+                $operation = ezpI18n::tr( 'admin/migration', 'Swapping Node %1 with %2', null, array( 
+                    $source , 
+                    $target 
+                ) );
                 break;
         }
     }
