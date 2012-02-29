@@ -27,7 +27,6 @@ if ( $http->hasPostVariable( 'Execute' ) )
         switch ( $http->postVariable( 'operation' ) )
         {
             case '1':
-                $db->begin();
                 if ( eZContentObjectTreeNodeOperations::move( $source, $target ) !== true )
                 {
                     $error = true;
@@ -43,7 +42,8 @@ if ( $http->hasPostVariable( 'Execute' ) )
                 break;
             case '2':
                 $params = array( 
-                    'AsObject' => false 
+                    'AsObject' => false,
+                	'Depth'    => 1
                 );
                 $nodes = eZContentObjectTreeNode::subTreeByNodeID( $params, $source );
                 
@@ -51,6 +51,8 @@ if ( $http->hasPostVariable( 'Execute' ) )
                 {
                     $error = true;
                 }
+                #var_dump($nodes);
+                #die();
                 foreach ( $nodes as $key => $node )
                 {
                     $db->begin();
