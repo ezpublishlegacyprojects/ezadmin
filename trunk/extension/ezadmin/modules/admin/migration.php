@@ -23,7 +23,7 @@ if ( $http->hasPostVariable( 'Execute' ) )
     
     {
         $db = eZDB::instance();
-        $db->begin();
+        
         switch ( $http->postVariable( 'operation' ) )
         {
             case '1':
@@ -46,6 +46,7 @@ if ( $http->hasPostVariable( 'Execute' ) )
                 }
                 foreach ( $nodes as $node )
                 {
+                	$db->begin();
                     if ( eZContentObjectTreeNodeOperations::move( $node->attribute( 'node_id' ), $target ) !== true )
                     {
                         $error = true;
@@ -54,6 +55,8 @@ if ( $http->hasPostVariable( 'Execute' ) )
                     {
                         $success = true;
                     }
+                    $db->commit();
+                    eZContentObject::clearCache();
                 }
                 $operation = ezpI18n::tr( 'admin/migration', 'Moving Children from Node %1 to %2', null, array( $source, $target ) );
                 break;
@@ -66,7 +69,6 @@ if ( $http->hasPostVariable( 'Execute' ) )
                 $operation = ezpI18n::tr( 'admin/migration', 'Swapping Node %1 with %2', null, array( $source, $target ) );
                 break;
         }
-        $db->commit();
     }
 }
 $tpl->setVariable( 'operation', $operation );
