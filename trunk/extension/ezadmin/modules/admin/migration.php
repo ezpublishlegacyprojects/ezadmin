@@ -43,7 +43,7 @@ if ( $http->hasPostVariable( 'Execute' ) )
             case '2':
                 $params = array( 
                     'AsObject' => false,
-                	'Depth'    => 1
+                    'Depth' => 1 
                 );
                 $nodes = eZContentObjectTreeNode::subTreeByNodeID( $params, $source );
                 
@@ -51,8 +51,6 @@ if ( $http->hasPostVariable( 'Execute' ) )
                 {
                     $error = true;
                 }
-                #var_dump($nodes);
-                #die();
                 foreach ( $nodes as $key => $node )
                 {
                     $db->begin();
