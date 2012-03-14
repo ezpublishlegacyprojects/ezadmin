@@ -72,6 +72,6 @@ $Result = array();
 $Result['left_menu'] = "design:parts/ezadmin/menu.tpl";
 $Result['content'] = $tpl->fetch( "design:ezadmin/mailtest.tpl" );
 $Result['path'] = array( array( 'url' => false,
-                                'text' => ezi18n( 'extension/admin', 'Mail Test' ) ) );
+                                'text' => ezpI18n::tr( 'extension/admin', 'Mail Test' ) ) );
 
 ?>

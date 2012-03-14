@@ -106,7 +106,7 @@ $Result['content'] = $tpl->fetch( 'design:ezadmin/solrcheck.tpl' );
 $Result['path'] = array( 
     array( 
         'url' => false , 
-        'text' => ezi18n( 'extension/admin', 'SOLR Test' ) 
+        'text' => ezpI18n::tr( 'extension/admin', 'SOLR Test' ) 
     ) 
 );
 

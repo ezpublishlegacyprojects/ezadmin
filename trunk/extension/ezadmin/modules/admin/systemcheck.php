@@ -125,7 +125,7 @@ $Result['content'] = $tpl->fetch( 'design:ezadmin/systemcheck.tpl' );
 $Result['path'] = array( 
     array( 
         'url' => false , 
-        'text' => ezi18n( 'extension/admin', 'System Check' ) 
+        'text' => ezpI18n::tr( 'extension/admin', 'System Check' ) 
     ) 
 );
 ?>
