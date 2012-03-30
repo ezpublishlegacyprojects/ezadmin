@@ -73,7 +73,7 @@ if ( $http->hasPostVariable( 'Execute' ) )
                 break;
             case '3':
                 $db->begin();
-                $return = eZContentOperationCollection::swapNode( $source, $target, array( 
+                $return = ezadminSwapNode::swapNode( $source, $target, array( 
                     $source , 
                     $target 
                 ) );
