@@ -2,190 +2,111 @@
 
 /**
  * 
- * @author kristina
+ * @author stephan
  *
- * Class creates customize system tests, e.g. for varnish
+ * Class swapnodes is a straight copy to wap nodes with each other
  *
- * For the output there is a customize template in ezadmin/design/standard/templates/ezadmin/systemcheck/custom_{function_name}.tpl
- * {function_name} comes from the array in the function getHeadlines
  */
-class checkUrlTest
+class ezadminSwapNode
 {
 
-    /**
-     * Customize tests, which check the url with an authentication
-     * 
-     * @return array
-     */
-    private function setupTestTable()
+    static public function swapNode( $nodeID, $selectedNodeID, $nodeIdList = array() )
     {
-        return array( 
-            'check_url' => array( 
-                'checkUrl' 
-            ) 
-        );
-    }
+        $userClassIDArray = eZUser::contentClassIDs();
 
-    /**
-     * Return all called functions defined in the systemcheck.ini
-     * 
-     * @return array
-     */
-    public function runTests( $testList )
-    {
-        $testTable = $this->setupTestTable();
-        
-        $testResultArray = array();
-        foreach ( $testList as $testItem )
-        {
-            $testName = $testItem;
-            $testElement = array();
-            if ( ! isset( $testTable[$testItem] ) )
-            {
-                eZDebug::writeError( "The setup test '$testName' is not defined" );
-                continue;
-            }
-            $testInfo = $testTable[$testItem];
-            $testFunction = $testInfo[0];
-            
-            if ( ! $this->$testFunction() )
-            {
-                continue;
-            }
-            $testResultArray[$testItem] = $this->$testFunction();
-        }
-        return $testResultArray;
-    }
+        $node             = eZContentObjectTreeNode::fetch( $nodeID );
+        $selectedNode     = eZContentObjectTreeNode::fetch( $selectedNodeID );
+        $object           = $node->object();
+        $nodeParentNodeID = $node->attribute( 'parent_node_id' );
+        $nodeParent       = $node->attribute( 'parent' );
 
-    /**
-     * Customize tests headlines
-     * 
-     * @return array
-     */
-    public function getHeadlines()
-    {
-    	
-        $ini = eZINI::instance( 'test.ini' );
-        if ( $gujINI->hasVariable( 'UrlSettings', 'NotifyURLAdvanced' ) )
-        {
-            return array( 
-                'check_url' => 'Details of the check' 
-            );
-        }
-        else
-        {
-            eZDebug::writeError( 'You have to fill in a url in the test.ini which you would like to check.' );
-        }
-    }
+        $objectID      = $object->attribute( 'id' );
+        $objectVersion = $object->attribute( 'current_version' );
 
-    function checkUrl()
-    {
-        $gujINI = eZINI::instance( 'test.ini' );
-        $url = $gujINI->variable( 'UrlSettings', 'NotifyURLAdvanced' );
-        $authUser = $gujINI->variable( 'UrlSettings', 'NotifyUser' );
-        $authPwd = $gujINI->variable( 'UrlSettings', 'NotifyPassword' );
-        
-        if ( $url != '' )
+        $selectedObject           = $selectedNode->object();
+        $selectedObjectID         = $selectedObject->attribute( 'id' );
+        $selectedObjectVersion    = $selectedObject->attribute( 'current_version' );
+        $selectedNodeParentNodeID = $selectedNode->attribute( 'parent_node_id' );
+        $selectedNodeParent       = $selectedNode->attribute( 'parent' );
+
+        $db = eZDB::instance();
+        $db->begin();
+
+        $node->setAttribute( 'contentobject_id', $selectedObjectID );
+        $node->setAttribute( 'contentobject_version', $selectedObjectVersion );
+
+        $selectedNode->setAttribute( 'contentobject_id', $objectID );
+        $selectedNode->setAttribute( 'contentobject_version', $objectVersion );
+
+        // fix main node id
+        if ( $node->isMain() && !$selectedNode->isMain() )
         {
-            $planeUrl = $url;
-            if ( $authUser != '' && $authPwd != '' )
-            {
-                $urlArray = parse_url( $planeUrl );
-                $urlArray['host'] = $planeUrl;
-                $urlArray['path'] = '/';
-                if ( $authUser != '' )
-                {
-                    $urlArray['user'] = $authUser;
-                }
-                if ( $authPwd != '' )
-                {
-                    $urlArray['pass'] = $authPwd;
-                }
-                
-                $url = http_build_url( $urlArray );
-            }
-            
-            $options = array(
-	            CURLOPT_RETURNTRANSFER => true,     // return web page
-	            CURLOPT_HEADER         => false,    // don't return headers
-	            //CURLOPT_FOLLOWLOCATION => true,     // follow redirects
-	            CURLOPT_ENCODING       => "",       // handle all encodings
-	            CURLOPT_USERAGENT      => "eZ Publish Notify Advanced", // who am i
-	            CURLOPT_AUTOREFERER    => true,     // set referer on redirect
-	            CURLOPT_CONNECTTIMEOUT => 120,      // timeout on connect
-	            CURLOPT_TIMEOUT        => 120,      // timeout on response
-	            CURLOPT_MAXREDIRS      => 10,       // stop after 10 redirects
-	            CURLOPT_SSL_VERIFYHOST => 0,            // don't verify ssl
-	            CURLOPT_POST => true,
-	        );
-	        $ch = curl_init( $url );
-	        curl_setopt_array( $ch, $options );
-			
-	        if ( $authUser != '' && $authPwd != '' )
-	        {
-	            curl_setopt( $ch, CURLOPT_USERPWD, $authUser . ":" . $authPwd );
-	            curl_setopt( $ch, CURLOPT_HTTPAUTH, CURLAUTH_ANY);
-	        }
-	        $content = curl_exec( $ch );
-	        $err     = curl_errno( $ch );
-	        $errmsg  = curl_error( $ch );
-	        $header  = curl_getinfo( $ch );
-            $intReturnCode = curl_getinfo( $ch, CURLINFO_HTTP_CODE );
-            curl_close( $ch );
-            
-            if ( $intReturnCode == 200 || $intReturnCode == 302 )
-            {
-                return array( 
-                    'result' => true , 
-                    'true_text' => 'The url ' . $planeUrl . ' is reachable with HTTP STATUS CODE ' . $intReturnCode . '.' , 
-                    'false_text' => '' 
-                );
-            }
-            else
-            {
-	            if ( $intReturnCode == 403 )
-	            {
-	                return array( 
-	                    'result' => false , 
-	                    'true_text' => '' , 
-	                    'false_text' => 'The url ' . $planeUrl . ' is unreachable with HTTP STATUS CODE ' . $intReturnCode . '. Your login is wrong.' 
-	                );
-	            }
-                elseif ( $intReturnCode >= 400 && $intReturnCode < 500 )
-                {
-                    return array( 
-                        'result' => false , 
-                        'true_text' => '' , 
-                        'false_text' => 'The url ' . $planeUrl . ' is unreachable. Client error with HTTP STATUS CODE ' . $intReturnCode . '.' 
-                    );
-                }
-                elseif ( $intReturnCode <= 500 )
-                {
-                    return array( 
-                        'result' => false , 
-                        'true_text' => '' , 
-                        'false_text' => 'The url ' . $planeUrl . ' is unreachable. Server error with HTTP STATUS CODE ' . $intReturnCode . '.' 
-                    );
-                }
-                else 
-                {
-                	return array( 
-                        'result' => false , 
-                        'true_text' => '' , 
-                        'false_text' => 'The url ' . $planeUrl . ' is unreachable.' 
-                    );
-                }
-            }
-        
+            $node->setAttribute( 'main_node_id', $selectedNode->attribute( 'main_node_id' ) );
+            $selectedNode->setAttribute( 'main_node_id', $selectedNode->attribute( 'node_id' ) );
         }
-        else
+        else if ( $selectedNode->isMain() && !$node->isMain() )
         {
-            return array( 
-                'result' => false , 
-                'true_text' => '' , 
-                'false_text' => 'You have to fill in a url in the test.ini which you would like to check.' 
-            );
+            $selectedNode->setAttribute( 'main_node_id', $node->attribute( 'main_node_id' ) );
+            $node->setAttribute( 'main_node_id', $node->attribute( 'node_id' ) );
         }
+
+        $node->store();
+        $selectedNode->store();
+
+        // clear user policy cache if this was a user object
+        if ( in_array( $object->attribute( 'contentclass_id' ), $userClassIDArray ) )
+        {
+            eZUser::purgeUserCacheByUserId( $object->attribute( 'id' ) );
+        }
+
+        if ( in_array( $selectedObject->attribute( 'contentclass_id' ), $userClassIDArray ) )
+        {
+            eZUser::purgeUserCacheByUserId( $selectedObject->attribute( 'id' ) );
+        }
+
+        // modify path string
+        $changedOriginalNode = eZContentObjectTreeNode::fetch( $nodeID );
+        $changedOriginalNode->updateSubTreePath();
+        $changedTargetNode = eZContentObjectTreeNode::fetch( $selectedNodeID );
+        $changedTargetNode->updateSubTreePath();
+
+        // modify section
+        if ( $changedOriginalNode->isMain() )
+        {
+            $changedOriginalObject = $changedOriginalNode->object();
+            $parentObject = $nodeParent->object();
+            if ( $changedOriginalObject->attribute( 'section_id' ) != $parentObject->attribute( 'section_id' ) )
+            {
+
+                eZContentObjectTreeNode::assignSectionToSubTree( $changedOriginalNode->attribute( 'main_node_id' ),
+                                                                $parentObject->attribute( 'section_id' ),
+                                                                $changedOriginalObject->attribute( 'section_id' ) );
+            }
+        }
+        if ( $changedTargetNode->isMain() )
+        {
+            $changedTargetObject = $changedTargetNode->object();
+            $selectedParentObject = $selectedNodeParent->object();
+            if ( $changedTargetObject->attribute( 'section_id' ) != $selectedParentObject->attribute( 'section_id' ) )
+            {
+
+                eZContentObjectTreeNode::assignSectionToSubTree( $changedTargetNode->attribute( 'main_node_id' ),
+                                                                $selectedParentObject->attribute( 'section_id' ),
+                                                                $changedTargetObject->attribute( 'section_id' ) );
+            }
+        }
+
+        eZContentObject::fixReverseRelations( $objectID, 'swap' );
+        eZContentObject::fixReverseRelations( $selectedObjectID, 'swap' );
+
+        $db->commit();
+
+        // clear cache for new placement.
+        eZContentCacheManager::clearContentCacheIfNeeded( $objectID );
+
+//        eZSearch::swapNode( $nodeID, $selectedNodeID, $nodeIdList = array() );
+
+        return array( 'status' => true );
     }
 }
 ?>
