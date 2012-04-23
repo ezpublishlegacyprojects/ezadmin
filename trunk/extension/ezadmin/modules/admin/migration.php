@@ -17,7 +17,7 @@ if ( $http->hasPostVariable( 'Execute' ) )
     if ( empty( $source ) || empty( $target ) || ! eZContentObjectTreeNode::fetch( $target ) instanceof eZContentObjectTreeNode || ! eZContentObjectTreeNode::fetch( $source ) instanceof eZContentObjectTreeNode )
     {
         $error = true;
-        $operation =  ezpI18n::tr( "admin/migration", "Please provide valid NodeID's for the choosen operation!");
+        $operation = ezpI18n::tr( "admin/migration", "Please provide valid NodeID's for the choosen operation!" );
     }
     else
     
@@ -42,34 +42,38 @@ if ( $http->hasPostVariable( 'Execute' ) )
                 break;
             case '2':
                 $params = array( 
-                    'AsObject' => true,
+                    'AsObject' => true , 
                     'Depth' => 1 
                 );
-                $nodes = eZContentObjectTreeNode::subTreeByNodeID( $params, $source );
                 
+                $nodes = eZContentObjectTreeNode::subTreeByNodeID( $params, $source );
+
                 if ( ! $nodes )
                 {
                     $error = true;
                 }
-                foreach ( $nodes as $key => $node )
+                else
                 {
-                    $db->begin();
-                    if ( $node->move($target)!== true)
-//                    if ( eZContentObjectTreeNodeOperations::move( $node['node_id'], $target ) !== true )
+                    foreach ( $nodes as $key => $node )
                     {
-                        $error = true;
+                        $db->begin();
+                        
+                        if ( eZContentObjectTreeNodeOperations::move( $node->attribute('node_id'), $target ) !== true )
+                        {
+                            $error = true;
+                        }
+                        else
+                        {
+                            $success = true;
+                        }
+                        $db->commit();
+                        eZContentObject::clearCache();
                     }
-                    else
-                    {
-                        $success = true;
-                    }
-                    $db->commit();
-                    eZContentObject::clearCache();
+                    $operation = ezpI18n::tr( 'admin/migration', 'Moving Children from Node %1 to %2', null, array( 
+                        $source , 
+                        $target 
+                    ) );
                 }
-                $operation = ezpI18n::tr( 'admin/migration', 'Moving Children from Node %1 to %2', null, array( 
-                    $source , 
-                    $target 
-                ) );
                 break;
             case '3':
                 $db->begin();
