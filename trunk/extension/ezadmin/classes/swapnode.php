@@ -4,7 +4,7 @@
  * 
  * @author stephan
  *
- * Class swapnodes is a straight copy to wap nodes with each other
+ * Class swapnodes is a straight copy to swap nodes with each other
  *
  */
 class ezadminSwapNode
