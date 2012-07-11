@@ -2,4 +2,5 @@
 [ModuleSettings]
 ExtensionRepositories[]=ezadmin
 ModuleList[]=admin
+ModuleList[]=test
 */ ?>

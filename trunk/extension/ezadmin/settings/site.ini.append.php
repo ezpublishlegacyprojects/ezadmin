@@ -8,4 +8,8 @@ AdditionalSiteDesignList[]=standard
 [RegionalSettings]
 TranslationExtensions[]=ezadmin
 
+[RoleSettings]
+PolicyOmitList[]
+PolicyOmitList[]=test/html
+
 */ ?>
