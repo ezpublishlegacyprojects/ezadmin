@@ -149,7 +149,7 @@ ctx.fillRect(0,0,80,100);
 
 <hr />
 
-<h2>Nested Ordered and unordered lists</h2>
+<h2>Nested ordered and unordered lists</h2>
 
 <ul>
   <li>Coffee</li>
@@ -188,7 +188,7 @@ ctx.fillRect(0,0,80,100);
     <input type="password" name="password" />
     
     <label for="user">User</label>
-    <input type="text" name="user" />
+    <input type="text" name="user" /><br />
     
     <label for="cars">Cars</label>
     <select name="cars">
@@ -196,7 +196,7 @@ ctx.fillRect(0,0,80,100);
       <option value="saab">Saab</option>
       <option value="mercedes">Mercedes</option>
       <option value="audi">Audi</option>
-    </select>
+    </select><br />
     <label for="morecars">Cars</label>
     <select name="morecars">
       <optgroup label="Swedish Cars">
@@ -207,14 +207,14 @@ ctx.fillRect(0,0,80,100);
         <option value="mercedes">Mercedes</option>
         <option value="audi">Audi</option>
       </optgroup>
-    </select> 
+    </select> <br />
     <label for="message">Message</label>
-    <textarea name="Message" rows="2" cols="20">
-    At W3Schools you will find all the Web-building tutorials you need, from basic HTML to advanced XML, SQL, ASP, and PHP.
+    <textarea name="Message" rows="5" cols="40">
+Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. 
     </textarea> 
-    
+    <br />
     <input type="submit" value="Submit" />
-    
+    <br />
     <fieldset>
         <legend>Personalia:</legend>
         <label for="morecars">Cars</label>
@@ -224,7 +224,9 @@ ctx.fillRect(0,0,80,100);
         <label for="morecars">Cars</label>
         <input type="text" />
     </fieldset>
-</form> 
+</form>
+
+<br />
 <button>Button</button>
 
 <hr />
