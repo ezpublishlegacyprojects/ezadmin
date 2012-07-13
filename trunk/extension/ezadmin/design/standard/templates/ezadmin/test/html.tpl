@@ -12,8 +12,6 @@
     <h2>Heading Group: H2</h2>
 </hgroup>
 
-<hr />
-
 <p>
 Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
 <a href="http://www.w3schools.com">This is a link </a>
@@ -21,11 +19,7 @@ At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergr
 Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
 At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
 </p>
-
-<hr />
-
 <p>
-    <h2>Text containing an image</h2>
     Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
     <img src={"planets.gif"|ezimage} width="200" height="150" />
     sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
@@ -46,7 +40,6 @@ At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergr
 <p>
 This is normal text.
 <b>This text is bold</b>.
-<big>This text is big</big>.
 <i>This text is italic</i>.
 <em>Emphasized text</em>.
 <strong>Strong text</strong>.
@@ -57,10 +50,8 @@ This is normal text.
 <kbd>Keyboard input</kbd>.
 <var>Variable</var>.
 <cite>Citation</cite>.
-<time>2011-11-12 14:54:39+0000</time>.
-
+I have a date on <time datetime="2008-02-14">Valentines day</time>.
 <mark>This text is marked</mark>
-Can I get this <acronym title="as soon as possible">ASAP</acronym>?
 The <abbr title="World Health Organization">WHO</abbr> was founded in 1948. 
 </p>
 <p>This is<sub> subscript</sub> and <sup>superscript</sup></p>
@@ -68,8 +59,9 @@ The <abbr title="World Health Organization">WHO</abbr> was founded in 1948.
 <hr />
 
 <h2>Table with caption</h2>
-
-<table summary="The Summary of the table: 2 rows and 2 cells">
+<details>
+<summary>The Summary of the table: 2 rows and 2 cells</summary>
+<table>
     <caption>Table Caption</caption>
     <tr>
         <th>Header 1</th>
@@ -96,6 +88,7 @@ The <abbr title="World Health Organization">WHO</abbr> was founded in 1948.
         <td>row 5, cell 2</td>
     </tr>
 </table>
+</details> 
 
 <hr />
 
@@ -177,7 +170,7 @@ ctx.fillRect(0,0,80,100);
 
 <h2>Form elements</h2>
 
-<form name="input" action="" method="get">
+<form name="input" action={"/"|ezurl} method="get">
     <label for="male">Male</label>
     <input type="radio" name="sex" id="male" /><br />
     
@@ -185,20 +178,20 @@ ctx.fillRect(0,0,80,100);
     <input type="checkbox" name="sex" id="female" />
     
     <label for="password">Password</label>
-    <input type="password" name="password" />
+    <input type="password" name="password" id="password" />
     
     <label for="user">User</label>
-    <input type="text" name="user" /><br />
+    <input type="text" name="user" id="user" /><br />
     
     <label for="cars">Cars</label>
-    <select name="cars">
+    <select name="cars" id="cars">
       <option value="volvo">Volvo</option>
       <option value="saab">Saab</option>
       <option value="mercedes">Mercedes</option>
       <option value="audi">Audi</option>
     </select><br />
     <label for="morecars">Cars</label>
-    <select name="morecars">
+    <select name="morecars" id="morecars">
       <optgroup label="Swedish Cars">
         <option value="volvo">Volvo</option>
         <option value="saab">Saab</option>
@@ -209,20 +202,20 @@ ctx.fillRect(0,0,80,100);
       </optgroup>
     </select> <br />
     <label for="message">Message</label>
-    <textarea name="Message" rows="5" cols="40">
+    <textarea name="Message" id="message" rows="5" cols="40">
 Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. 
     </textarea> 
     <br />
-    <input type="submit" value="Submit" />
+    <input type="submit" value="Submit" /> <button>Other button</button>
     <br />
     <fieldset>
         <legend>Personalia:</legend>
-        <label for="morecars">Cars</label>
-        <input type="text" />
-        <label for="morecars">Cars</label>
-        <input type="text" />
-        <label for="morecars">Cars</label>
-        <input type="text" />
+        <label for="firstname">Firstname</label>
+        <input type="text" id="firstname"/>
+        <label for="lastname">Lastname</label>
+        <input type="text" id="lastname"/>
+        <label for="city">City</label>
+        <input type="text" id="city" />
     </fieldset>
 </form>
 
