@@ -171,43 +171,43 @@ ctx.fillRect(0,0,80,100);
 <h2>Form elements</h2>
 
 <form name="input" action={"/"|ezurl} method="get">
-    <label for="male">Male</label>
-    <input type="radio" name="sex" id="male" /><br />
-    
-    <label for="female">Female</label>
-    <input type="checkbox" name="sex" id="female" />
-    
-    <label for="password">Password</label>
-    <input type="password" name="password" id="password" />
-    
-    <label for="user">User</label>
-    <input type="text" name="user" id="user" /><br />
-    
-    <label for="cars">Cars</label>
-    <select name="cars" id="cars">
-      <option value="volvo">Volvo</option>
-      <option value="saab">Saab</option>
-      <option value="mercedes">Mercedes</option>
-      <option value="audi">Audi</option>
-    </select><br />
-    <label for="morecars">Cars</label>
-    <select name="morecars" id="morecars">
-      <optgroup label="Swedish Cars">
-        <option value="volvo">Volvo</option>
-        <option value="saab">Saab</option>
-      </optgroup>
-      <optgroup label="German Cars">
-        <option value="mercedes">Mercedes</option>
-        <option value="audi">Audi</option>
-      </optgroup>
-    </select> <br />
-    <label for="message">Message</label>
-    <textarea name="Message" id="message" rows="5" cols="40">
+    <p>
+        <legend>Sex:</legend>
+        <label for="male"><input type="radio" name="sex" id="male" />Male</label>
+        <label for="female"><input type="radio" name="sex" id="female" />Female</label>
+        
+        <label for="option">Yes / No<input type="checkbox" name="option" id="option" /></label>
+        
+        <label for="password">Password</label>
+        <input type="password" name="password" id="password" />
+        
+        <label for="user">User</label>
+        <input type="text" name="user" id="user" />
+        
+        <label for="cars">Cars</label>
+        <select name="cars" id="cars">
+          <option value="volvo">Volvo</option>
+          <option value="saab">Saab</option>
+          <option value="mercedes">Mercedes</option>
+          <option value="audi">Audi</option>
+        </select>
+        <label for="morecars">Cars</label>
+        <select name="morecars" id="morecars">
+          <optgroup label="Swedish Cars">
+            <option value="volvo">Volvo</option>
+            <option value="saab">Saab</option>
+          </optgroup>
+          <optgroup label="German Cars">
+            <option value="mercedes">Mercedes</option>
+            <option value="audi">Audi</option>
+          </optgroup>
+        </select>
+        <label for="message">Message</label>
+        <textarea name="Message" id="message" rows="5" cols="40">
 Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. 
-    </textarea> 
-    <br />
-    <input type="submit" value="Submit" /> <button>Other button</button>
-    <br />
+        </textarea> 
+        <input type="submit" value="Submit" /> <button>Other button</button>
+    </p>
     <fieldset>
         <legend>Personalia:</legend>
         <label for="firstname">Firstname</label>
