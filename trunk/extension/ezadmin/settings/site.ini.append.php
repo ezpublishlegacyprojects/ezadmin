@@ -9,7 +9,6 @@ AdditionalSiteDesignList[]=standard
 TranslationExtensions[]=ezadmin
 
 [RoleSettings]
-PolicyOmitList[]
 PolicyOmitList[]=test/html
 
 */ ?>
