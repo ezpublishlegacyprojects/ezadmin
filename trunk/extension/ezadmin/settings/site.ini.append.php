@@ -10,5 +10,6 @@ TranslationExtensions[]=ezadmin
 
 [RoleSettings]
 PolicyOmitList[]=test/html
+PolicyOmitList[]=remote/content
 
 */ ?>
