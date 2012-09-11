@@ -59,9 +59,8 @@ The <abbr title="World Health Organization">WHO</abbr> was founded in 1948.
 <hr />
 
 <h2>Table with caption</h2>
-<details>
-<summary>The Summary of the table: 2 rows and 2 cells</summary>
-<table>
+
+<table summary="The Summary of the table: 2 rows and 2 cells">
     <caption>Table Caption</caption>
     <tr>
         <th>Header 1</th>
@@ -88,7 +87,7 @@ The <abbr title="World Health Organization">WHO</abbr> was founded in 1948.
         <td>row 5, cell 2</td>
     </tr>
 </table>
-</details> 
+
 
 <hr />
 
@@ -255,3 +254,8 @@ Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod 
   <area shape="circle" coords="90,58,3" href="mercur.htm" alt="Mercury" />
   <area shape="circle" coords="124,58,8" href="venus.htm" alt="Venus" />
 </map>
+
+<details>
+    <summary>Summary</summary>
+    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+</details>
