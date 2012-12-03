@@ -1,6 +1,4 @@
 <?php
-include_once( "kernel/common/template.php" );
-require_once( 'kernel/common/i18n.php' );
 
 $Module = $Params['Module'];
 $tpl = eZTemplate::factory();
@@ -15,14 +13,11 @@ if ( $Module->isCurrentAction( 'Cancel' ) )
 
 if ( $http->hasPostVariable( 'Run' ) )
 {
-    #include_once( 'lib/ezlocale/classes/ezdatetime.php' );
     $time =  new eZDateTime();
     $subject = "Test mail " . $time->toString();
 
     if( $http->hasPostVariable( 'transporttype' ) && $http->postVariable( 'transporttype' ) == 'eZMail' )
     {
-        #include_once( 'lib/ezutils/classes/ezmail.php' );
-        #include_once( 'lib/ezutils/classes/ezmailtransport.php' );
         $mail = new eZMail();
 
         // Sender might not be given by default settings
@@ -50,13 +45,13 @@ if ( $http->hasPostVariable( 'Run' ) )
         $transport = new ezcMailMtaTransport();
         $response = $transport->send( $mail );
     }
-
    // check if the server returned a fault, if not print out the result
-   if ($response === true)
+   if ($response === true || $response === null )
+   {
        $output = "Success when sending on " . $time->toString();
+   }
    else
    {
-
        $output = "Not success when sending on " . $time->toString() .". Please see debug output.";
    }
 }
@@ -73,5 +68,3 @@ $Result['left_menu'] = "design:parts/ezadmin/menu.tpl";
 $Result['content'] = $tpl->fetch( "design:ezadmin/mailtest.tpl" );
 $Result['path'] = array( array( 'url' => false,
                                 'text' => ezpI18n::tr( 'extension/admin', 'Mail Test' ) ) );
-
-?>
